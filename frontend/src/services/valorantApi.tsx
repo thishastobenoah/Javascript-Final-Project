@@ -3,7 +3,7 @@ import axios from 'axios';
 import Valorant from '../models/Valorant';
 
 interface Props {
-  baseUrl: string;
+  baseUrl: 'https://dash.valorant-api.com/';
 }
 
 const RandomValorant: React.FC<Props> = ({ baseUrl }) => {
