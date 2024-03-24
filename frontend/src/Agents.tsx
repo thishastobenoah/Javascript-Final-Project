@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { fetchAgents } from './services/agentsAPI';
-import { ValorantAgent } from './models/Agent';
+import { fetchAgents } from './services/agentsApi';
+import { Agent } from './models/Agent';
 
 const Agents = () => {
-  const [agents, setAgents] = useState<ValorantAgent[]>([]);
-  const [selectedAgent, setSelectedAgent] = useState<ValorantAgent | null>(null);
+  const [agents, setAgents] = useState<Agent[]>([]);
+  const [selectedAgent, setSelectedAgent] = useState<Agent | null>(null);
 
   useEffect(() => {
     fetchAgents().then(setAgents);

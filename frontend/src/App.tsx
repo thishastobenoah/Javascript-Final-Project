@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Heroes from './Heroes';
-import Valorant from './Valorant';
-import League from './League';
+import Valorant from './Agents';
+import League from './Legends';
 
 const App = () => {
   const [selectedGame, setSelectedGame] = useState('');

@@ -1,4 +1,4 @@
-export interface ValorantAgent {
+export interface Agent {
     uuid: string;
     displayName: string;
     description: string;
