@@ -1,23 +1,39 @@
-import { UserStatsResponse } from "../models/UserStatsResponse";
 import axios from "axios";
-
-
-// export function getUserStats(id: number): Promise<UserStatsResponse>{
-//     return axios
-//     .get<UserStatsResponse>("${id}") //TODO - insert url for backend here 
-//     .then((response) => {
-//         return response.data;
-//     })
-// }
+import { UserStatsResponse } from "../models/UserStatsResponse";
 
 const BASE_URL = process.env.REACT_APP_API_URL;
 
-export function getUserStats(id: number): Promise<UserStatsResponse> {
+export function getUserStatsByUserId(userId: string): Promise<UserStatsResponse[]> {
   return axios
-    .get<UserStatsResponse>(`${BASE_URL}/userstats/${id}`) // Replace '/userstats/${id}' with your actual endpoint
-    .then((response) => response.data)
-    .catch((error) => {
+    .get<UserStatsResponse[]>(`${BASE_URL}/userStats/byUser/${userId}`)
+    .then(response => response.data)
+    .catch(error => {
       console.error("Error fetching user stats:", error);
+      throw error;
+    });
+}
+
+export function saveHeroStats({
+  userId,
+  characterName,
+  kills,
+  deaths,
+}: {
+  userId: string;
+  characterName: string;
+  kills: number;
+  deaths: number;
+}): Promise<void> { 
+  return axios
+    .post(`${BASE_URL}/heroStats`, {
+      userId,
+      characterName,
+      kills,
+      deaths,
+    })
+    .then(response => response.data)
+    .catch(error => {
+      console.error("Error saving hero stats:", error);
       throw error;
     });
 }

@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Heroes from './Heroes';
-import Valorant from './Valorant';
+import Valorant from './Agents';
 import League from './League';
+import UserStats from './UserStats';
 
 const App = () => {
   const [selectedGame, setSelectedGame] = useState('');
+  const [showStats, setShowStats] = useState(false);
+  const userID = ""; // TODO - connect to auth ID
 
   const renderGameComponent = () => {
+    if (showStats) {
+      return <UserStats userId={userID} />;
+    }
     switch (selectedGame) {
       case 'heroes':
         return <Heroes />;
@@ -15,16 +21,17 @@ const App = () => {
       case 'league':
         return <League />;
       default:
-        return <div>Please select a game</div>;
+        return <div>Please select a game or view stats</div>;
     }
   };
 
   return (
     <div>
       <h1>Game Stats Tracker</h1>
-      <button onClick={() => setSelectedGame('heroes')}>Heroes</button>
-      <button onClick={() => setSelectedGame('valorant')}>Valorant</button>
-      <button onClick={() => setSelectedGame('league')}>League of Legends</button>
+      <button onClick={() => { setSelectedGame('heroes'); setShowStats(false); }}>Heroes</button>
+      <button onClick={() => { setSelectedGame('valorant'); setShowStats(false); }}>Valorant</button>
+      <button onClick={() => { setSelectedGame('league'); setShowStats(false); }}>League of Legends</button>
+      <button onClick={() => { setShowStats(true); setSelectedGame(''); }}>Show Stats</button> {/* New button to show stats */}
       {renderGameComponent()}
     </div>
   );

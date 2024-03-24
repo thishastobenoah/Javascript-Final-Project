@@ -9,22 +9,22 @@ const errorResponse = (error: any, res: any) => {
   console.error('FAIL', error);
   res.status(500).json({ message: 'Internal Server Error' });
 };
-userStatsRouter.get('/find/:id', async (req, res) => {
-    try {
-      const client = await getClient();
-      const _id = new ObjectId(req.params.id); // make sure to wrap _id values in new ObjectId
-  
-      const result = await client.db().collection<UserStats>('userstats').findOne({ _id: _id });
-  
-      if (result) {
-        res.json(result);
-      } else {
-        res.status(404).send('stats not found');
-      }
-    } catch (error) {
-      errorResponse(error, res)
+userStatsRouter.get('/byUser/:userId', async (req, res) => {
+  try {
+    const client = await getClient();
+    const userId = req.params.userId;
+
+    const results = await client.db().collection<UserStats>('userstats').find({ userId }).toArray();
+
+    if (results && results.length > 0) {
+      res.json(results);
+    } else {
+      res.status(404).send('Stats not found for the user');
     }
-  });
+  } catch (error) {
+    errorResponse(error, res);
+  }
+});
 
   userStatsRouter.post('/', async (req, res) => {
     try {
