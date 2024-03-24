@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Heroes from './Heroes';
 import Valorant from './Agents';
-import League from './League';
+import League from './Legends';
 import UserStats from './UserStats';
 
 const App = () => {
