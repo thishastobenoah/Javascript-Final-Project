@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchAgents } from './services/agentsAPI';
+import { fetchAgents } from './services/agentsApi';
 import { ValorantAgent } from './models/Agent';
 
 const Agents = () => {
