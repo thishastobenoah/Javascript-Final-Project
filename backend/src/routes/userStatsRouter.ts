@@ -60,3 +60,5 @@ userStatsRouter.get('/byUser/:userId', async (req, res) => {
       errorResponse(error, res)
     }
   });
+
+  export default userStatsRouter;
