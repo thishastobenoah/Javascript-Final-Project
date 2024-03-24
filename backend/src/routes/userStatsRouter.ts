@@ -1,7 +1,7 @@
 import express, { Router } from 'express';
 import { getClient } from '../db';
 import { ObjectId } from 'mongodb';
-import UserStats from '../models/UserStats';
+import { UserStats } from '../models/UserStats';
 
 const userStatsRouter = express.Router();
 
