@@ -1,7 +1,7 @@
 import axios from "axios";
 import { UserStatsResponse } from "../models/UserStatsResponse";
 
-const BASE_URL = process.env.REACT_APP_API_URL;
+const BASE_URL = "http://localhost:3000";
 
 export function getUserStatsByUserId(userId: string): Promise<UserStatsResponse[]> {
   return axios
@@ -25,7 +25,7 @@ export function saveHeroStats({
   deaths: number;
 }): Promise<void> { 
   return axios
-    .post(`${BASE_URL}/heroStats`, {
+    .post(`${BASE_URL}/userstats/`, {
       userId,
       characterName,
       kills,

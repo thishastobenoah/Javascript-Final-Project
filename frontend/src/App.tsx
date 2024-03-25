@@ -7,7 +7,7 @@ import UserStats from './UserStats';
 const App = () => {
   const [selectedGame, setSelectedGame] = useState('');
   const [showStats, setShowStats] = useState(false);
-  const userID = ""; // TODO - connect to auth ID
+  const userID = "1"; // TODO - connect to auth ID
 
   const renderGameComponent = () => {
     if (showStats) {

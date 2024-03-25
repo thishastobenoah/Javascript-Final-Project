@@ -8,7 +8,7 @@ const Heroes = () => {
   const [selectedHero, setSelectedHero] = useState<Hero | null>(null);
   const [kills, setKills] = useState('');
   const [deaths, setDeaths] = useState('');
-  const userID = ""; //TODO - add user id from auth
+  const userID = "1"; //TODO - add user id from auth
 
   useEffect(() => {
     fetchHeroes().then(setHeroes);
