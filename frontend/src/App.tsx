@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Heroes from './Heroes';
-import Valorant from './Agents';
-import League from './Legends';
+import Agents from './Agents';
+import Legends from './Legends';
 import UserStats from './UserStats';
 
 const App = () => {
@@ -17,9 +17,9 @@ const App = () => {
       case 'heroes':
         return <Heroes />;
       case 'valorant':
-        return <Valorant />;
+        return <Agents />;
       case 'league':
-        return <League />;
+        return <Legends />;
       default:
         return <div>Please select a game or view stats</div>;
     }
@@ -29,8 +29,8 @@ const App = () => {
     <div>
       <h1>Game Stats Tracker</h1>
       <button onClick={() => { setSelectedGame('heroes'); setShowStats(false); }}>Heroes</button>
-      <button onClick={() => { setSelectedGame('valorant'); setShowStats(false); }}>Valorant</button>
-      <button onClick={() => { setSelectedGame('league'); setShowStats(false); }}>League of Legends</button>
+      <button onClick={() => { setSelectedGame('agents'); setShowStats(false); }}>Valorant</button>
+      <button onClick={() => { setSelectedGame('legends'); setShowStats(false); }}>League of Legends</button>
       <button onClick={() => { setShowStats(true); setSelectedGame(''); }}>Show Stats</button> {/* New button to show stats */}
       {renderGameComponent()}
     </div>
