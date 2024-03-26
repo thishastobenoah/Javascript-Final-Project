@@ -16,9 +16,9 @@ const App = () => {
     switch (selectedGame) {
       case 'heroes':
         return <Heroes />;
-      case 'valorant':
+      case 'agents':
         return <Agents />;
-      case 'league':
+      case 'legends':
         return <Legends />;
       default:
         return <div>Please select a game or view stats</div>;
@@ -27,11 +27,11 @@ const App = () => {
 
   return (
     <div>
-      <h1>Game Stats Tracker</h1>
-      <button onClick={() => { setSelectedGame('heroes'); setShowStats(false); }}>Heroes</button>
+      <h1>Random Character Selector</h1>
+      <button onClick={() => { setSelectedGame('heroes'); setShowStats(false); }}>Heroes of the Storm</button>
       <button onClick={() => { setSelectedGame('agents'); setShowStats(false); }}>Valorant</button>
       <button onClick={() => { setSelectedGame('legends'); setShowStats(false); }}>League of Legends</button>
-      <button onClick={() => { setShowStats(true); setSelectedGame(''); }}>Show Stats</button> {/* New button to show stats */}
+      <button onClick={() => { setShowStats(true); setSelectedGame(''); }}>Show Stats</button>
       {renderGameComponent()}
     </div>
   );
