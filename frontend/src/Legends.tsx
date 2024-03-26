@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { fetchLegends } from './services/legendsApi';
-import { saveHeroStats } from './services/userStatsApi'; // Assuming similar functionality exists for legends
+import { saveHeroStats } from './services/userStatsApi'; 
 import { Legend } from './models/Legend';
 
 const Legends = () => {
@@ -8,7 +8,7 @@ const Legends = () => {
   const [selectedLegend, setSelectedLegend] = useState<Legend | null>(null);
   const [kills, setKills] = useState('');
   const [deaths, setDeaths] = useState('');
-  const userID = ""; //TODO: Add user ID from auth
+  const userID = "1"; //TODO: Add user ID from auth
 
   useEffect(() => {
     fetchLegends().then(data => setLegends(data));
