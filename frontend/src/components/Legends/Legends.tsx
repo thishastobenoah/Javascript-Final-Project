@@ -1,33 +1,33 @@
 import { useState, useEffect } from 'react';
-import { fetchHeroes } from './services/heroesApi';
-import { Hero } from './models/Hero';
-import { saveHeroStats } from './services/userStatsApi';
+import { Legend } from '../../models/Legend';
+import { fetchLegends } from '../../services/legendsApi';
+import { saveLegendStats } from '../../services/userStatsApi';
 
-const Heroes = () => {
-  const [heroes, setHeroes] = useState<Hero[]>([]);
-  const [selectedHero, setSelectedHero] = useState<Hero | null>(null);
+const Legends = () => {
+  const [legends, setLegends] = useState<Legend[]>([]);
+  const [selectedLegend, setSelectedLegend] = useState<Legend | null>(null);
   const [kills, setKills] = useState('');
   const [deaths, setDeaths] = useState('');
-  const userID = "1"; //TODO - add user id from auth
+  const userID = "1"; //TODO: Add user ID from auth
 
   useEffect(() => {
-    fetchHeroes().then(setHeroes);
+    fetchLegends().then(data => setLegends(data));
   }, []);
 
   const handleGenerateClick = () => {
-    if (heroes.length) {
-      const randomIndex = Math.floor(Math.random() * heroes.length);
-      setSelectedHero(heroes[randomIndex]);
+    if (legends.length) {
+      const randomIndex = Math.floor(Math.random() * legends.length);
+      setSelectedLegend(legends[randomIndex]);
     }
   };
 
   const handleSaveStats = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (selectedHero && userID) {
+    if (selectedLegend && userID) {
       try {
-        await saveHeroStats({
+        await saveLegendStats({
           userId: userID,
-          characterName: selectedHero.name,
+          characterName: selectedLegend.name,
           kills: parseInt(kills, 10),
           deaths: parseInt(deaths, 10),
         });
@@ -43,14 +43,13 @@ const Heroes = () => {
 
   return (
     <div>
-      <h1>Hero Generator</h1>
+      <h1>Legend Generator</h1>
       <button onClick={handleGenerateClick}>Generate</button>
-      {selectedHero && (
+      {selectedLegend && (
         <form onSubmit={handleSaveStats}>
           <div>
-            <h2>{selectedHero.name}</h2>
-            <p>Role: {selectedHero.role}</p>
-            <p>Type: {selectedHero.type}</p>
+            <h2>{selectedLegend.name}</h2>
+            <h3>{selectedLegend.title}</h3>
           </div>
           <input
             type="number"
@@ -73,4 +72,4 @@ const Heroes = () => {
   );
 };
 
-export default Heroes;
+export default Legends;

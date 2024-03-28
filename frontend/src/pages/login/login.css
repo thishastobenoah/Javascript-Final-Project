@@ -1,0 +1,38 @@
+.login-form-container {
+  display: flex;
+  position: relative;
+  height: 100dvh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+}
+
+form.login-form {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  max-width: 300px;
+}
+
+form.login-form .form-error {
+  background-color: rgba(255, 0, 0, 0.3);
+  border: 1px solid red;
+  color: red;
+  backdrop-filter: blur(6px);
+}
+
+form.login-form input {
+  width: 100%;
+}
+
+form.login-form a {
+  color: lightblue;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+form.login-form a:hover {
+  text-decoration: underline;
+}

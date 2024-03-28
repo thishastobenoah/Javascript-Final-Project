@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { getUserStatsByUserId } from './services/userStatsApi';
-import { UserStatsResponse } from './models/UserStatsResponse';
+import { UserStatsResponse } from '../../models/UserStatsResponse';
+import { getUserStatsByUserId } from '../../services/userStatsApi';
 
 interface UserStatsProps {
   userId: string;

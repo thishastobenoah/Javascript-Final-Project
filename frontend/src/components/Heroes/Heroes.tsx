@@ -1,34 +1,33 @@
 import { useState, useEffect } from 'react';
-import { fetchAgents } from './services/agentsApi';
-import { Agent } from './models/Agent';
-import { saveHeroStats } from './services/userStatsApi';
+import { Hero } from '../../models/Hero';
+import { fetchHeroes } from '../../services/heroesApi';
+import { saveHeroStats } from '../../services/userStatsApi';
 
-
-const Agents = () => {
-  const [agents, setAgents] = useState<Agent[]>([]);
-  const [selectedAgent, setSelectedAgent] = useState<Agent | null>(null);
+const Heroes = () => {
+  const [heroes, setHeroes] = useState<Hero[]>([]);
+  const [selectedHero, setSelectedHero] = useState<Hero | null>(null);
   const [kills, setKills] = useState('');
   const [deaths, setDeaths] = useState('');
   const userID = "1"; //TODO - add user id from auth
 
   useEffect(() => {
-    fetchAgents().then(setAgents);
+    fetchHeroes().then(setHeroes);
   }, []);
 
   const handleGenerateClick = () => {
-    if (agents.length) {
-      const randomIndex = Math.floor(Math.random() * agents.length);
-      setSelectedAgent(agents[randomIndex]);
+    if (heroes.length) {
+      const randomIndex = Math.floor(Math.random() * heroes.length);
+      setSelectedHero(heroes[randomIndex]);
     }
   };
 
   const handleSaveStats = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (selectedAgent && userID) {
+    if (selectedHero && userID) {
       try {
         await saveHeroStats({
           userId: userID,
-          characterName: selectedAgent.displayName,
+          characterName: selectedHero.name,
           kills: parseInt(kills, 10),
           deaths: parseInt(deaths, 10),
         });
@@ -44,13 +43,14 @@ const Agents = () => {
 
   return (
     <div>
-      <h1>Agent Generator</h1>
+      <h1>Hero Generator</h1>
       <button onClick={handleGenerateClick}>Generate</button>
-      {selectedAgent && (
+      {selectedHero && (
         <form onSubmit={handleSaveStats}>
           <div>
-            <h2>{selectedAgent.displayName}</h2>
-            <p>Role: {selectedAgent.role}</p> 
+            <h2>{selectedHero.name}</h2>
+            <p>Role: {selectedHero.role}</p>
+            <p>Type: {selectedHero.type}</p>
           </div>
           <input
             type="number"
@@ -73,4 +73,4 @@ const Agents = () => {
   );
 };
 
-export default Agents;
+export default Heroes;
