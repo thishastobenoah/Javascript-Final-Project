@@ -12,7 +12,54 @@ export function getUserStatsByUserId(userId: string): Promise<UserStatsResponse[
       throw error;
     });
 }
-
+export function saveAgentStats({
+  userId,
+  characterName,
+  kills,
+  deaths,
+}: {
+  userId: string;
+  characterName: string;
+  kills: number;
+  deaths: number;
+}): Promise<void> {
+  return axios
+    .post(`${BASE_URL}/userstats/`, {
+      userId,
+      characterName,
+      kills,
+      deaths,
+    })
+    .then(response => response.data)
+    .catch(error => {
+      console.error("Error saving agent stats:", error);
+      throw error;
+    });
+  }
+  export function saveLegendStats({
+    userId,
+    characterName,
+    kills,
+    deaths,
+  }: {
+    userId: string;
+    characterName: string;
+    kills: number;
+    deaths: number;
+  }): Promise<void> {
+    return axios
+      .post(`${BASE_URL}/userstats/`, {
+        userId,
+        characterName,
+        kills,
+        deaths,
+      })
+      .then(response => response.data)
+      .catch(error => {
+        console.error("Error saving legend stats:", error);
+        throw error;
+      });
+    }
 export function saveHeroStats({
   userId,
   characterName,

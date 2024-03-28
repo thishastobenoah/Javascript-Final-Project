@@ -1,34 +1,33 @@
 import { useState, useEffect } from 'react';
-import { fetchAgents } from './services/agentsApi';
-import { Agent } from './models/Agent';
-import { saveHeroStats } from './services/userStatsApi';
+import { Legend } from '../../models/Legend';
+import { fetchLegends } from '../../services/legendsApi';
+import { saveLegendStats } from '../../services/userStatsApi';
 
-
-const Agents = () => {
-  const [agents, setAgents] = useState<Agent[]>([]);
-  const [selectedAgent, setSelectedAgent] = useState<Agent | null>(null);
+const Legends = () => {
+  const [legends, setLegends] = useState<Legend[]>([]);
+  const [selectedLegend, setSelectedLegend] = useState<Legend | null>(null);
   const [kills, setKills] = useState('');
   const [deaths, setDeaths] = useState('');
-  const userID = "1"; //TODO - add user id from auth
+  const userID = "1"; //TODO: Add user ID from auth
 
   useEffect(() => {
-    fetchAgents().then(setAgents);
+    fetchLegends().then(data => setLegends(data));
   }, []);
 
   const handleGenerateClick = () => {
-    if (agents.length) {
-      const randomIndex = Math.floor(Math.random() * agents.length);
-      setSelectedAgent(agents[randomIndex]);
+    if (legends.length) {
+      const randomIndex = Math.floor(Math.random() * legends.length);
+      setSelectedLegend(legends[randomIndex]);
     }
   };
 
   const handleSaveStats = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (selectedAgent && userID) {
+    if (selectedLegend && userID) {
       try {
-        await saveHeroStats({
+        await saveLegendStats({
           userId: userID,
-          characterName: selectedAgent.displayName,
+          characterName: selectedLegend.name,
           kills: parseInt(kills, 10),
           deaths: parseInt(deaths, 10),
         });
@@ -44,13 +43,13 @@ const Agents = () => {
 
   return (
     <div>
-      <h1>Agent Generator</h1>
+      <h1>Legend Generator</h1>
       <button onClick={handleGenerateClick}>Generate</button>
-      {selectedAgent && (
+      {selectedLegend && (
         <form onSubmit={handleSaveStats}>
           <div>
-            <h2>{selectedAgent.displayName}</h2>
-            <p>Role: {selectedAgent.role}</p> 
+            <h2>{selectedLegend.name}</h2>
+            <h3>{selectedLegend.title}</h3>
           </div>
           <input
             type="number"
@@ -73,4 +72,4 @@ const Agents = () => {
   );
 };
 
-export default Agents;
+export default Legends;

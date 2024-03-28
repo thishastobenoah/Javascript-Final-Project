@@ -1,0 +1,38 @@
+.registration-form-container {
+  display: flex;
+  position: relative;
+  height: 100dvh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+}
+
+form.registration-form {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  max-width: 300px;
+}
+
+form.registration-form .form-error {
+  background-color: rgba(255, 0, 0, 0.3);
+  border: 1px solid red;
+  color: red;
+  backdrop-filter: blur(6px);
+}
+
+form.registration-form input {
+  width: 100%;
+}
+
+form.registration-form a {
+  color: lightblue;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+form.registration-form a:hover {
+  text-decoration: underline;
+}

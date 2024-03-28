@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { fetchHeroes } from './services/heroesApi';
-import { Hero } from './models/Hero';
-import { saveHeroStats } from './services/userStatsApi';
+
+import { useState, useEffect } from 'react';
+import { Hero } from '../../models/Hero';
+import { fetchHeroes } from '../../services/heroesApi';
+import { saveHeroStats } from '../../services/userStatsApi';
 import Modal from './Modal';
 import './RouletteWheel.css';
 import './Modal.css';

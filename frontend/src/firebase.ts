@@ -1,5 +1,10 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import {
+  browserPopupRedirectResolver,
+  browserSessionPersistence,
+  initializeAuth,
+} from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -10,8 +15,12 @@ const firebaseConfig = {
   projectId: "final-project-decf6",
   storageBucket: "final-project-decf6.appspot.com",
   messagingSenderId: "217514809616",
-  appId: "1:217514809616:web:62e2ca80bdf69b13d8ed95"
+  appId: "1:217514809616:web:62e2ca80bdf69b13d8ed95",
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const firebaseApp = initializeApp(firebaseConfig);
+export const firebaseAuth = initializeAuth(firebaseApp, {
+  persistence: browserSessionPersistence,
+  popupRedirectResolver: browserPopupRedirectResolver,
+});
