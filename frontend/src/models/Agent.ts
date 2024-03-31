@@ -1,42 +1,48 @@
 export interface Agent {
-    uuid: string;
-    displayName: string;
-    description: string;
-    developerName: string;
-    characterTags: string[];
-    displayIcon: string;
-    bustPortrait: string;
-    fullPortrait: string;
-    assetPath: string;
-    isActive: boolean;
-    isDeleted: boolean;
-    isFree: boolean;
-    isNew: boolean;
-    isBundleContent: boolean;
-    streamedVideo: string;
-    assetVideos: string[];
-    assetName: string;
-    role: string;
-    roleDescription: string;
-    developerType: string;
-    releaseDate: string;
-    countryCode: string;
-    displayOrder: number;
-    isPlayableCharacter: boolean;
-    isAvailableForTest: boolean;
-    isAvailableForPurchase: boolean;
-    isAvailableForFree: boolean;
-    abilities: ValorantAbility[];
-  }
-  
-  export interface ValorantAbility {
-    slot: string;
-    displayName: string;
-    description: string;
-    displayIcon: string;
-    slotDisplayIcon: string;
-    assetName: string;
-    isActive: boolean;
-    isDeleted: boolean;
-    slotDisplayOrder: number;
-  }
+  uuid: string;
+  displayName: string;
+  description: string;
+  developerName: string;
+  characterTags: string[] | null;
+  displayIcon: string;
+  displayIconSmall?: string;
+  bustPortrait?: string;
+  fullPortrait?: string;
+  fullPortraitV2?: string;
+  killfeedPortrait?: string;
+  background?: string;
+  backgroundGradientColors?: string[];
+  assetPath: string;
+  isFullPortraitRightFacing?: boolean;
+  isPlayableCharacter: boolean;
+  isAvailableForTest: boolean;
+  isBaseContent?: boolean;
+  role: AgentRole;
+  recruitmentData?: RecruitmentData;
+  abilities: ValorantAbility[];
+}
+
+export interface AgentRole {
+  uuid: string;
+  displayName: string;
+  description: string;
+  displayIcon?: string;
+  assetPath: string;
+}
+
+export interface ValorantAbility {
+  slot: string;
+  displayName: string;
+  description: string;
+  displayIcon?: string;
+}
+
+export interface RecruitmentData {
+  counterId?: string;
+  milestoneId?: string;
+  milestoneThreshold?: number;
+  useLevelVpCostOverride?: boolean;
+  levelVpCostOverride?: number;
+  startDate?: string;
+  endDate?: string;
+}
