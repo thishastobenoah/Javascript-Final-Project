@@ -57,7 +57,7 @@ const Heroes = () => {
 
   return (
     <body className='heroes-body'>
-    <div className="compsoul-body">
+    <div className="heroes-container compsoul-body">
       <Link className='heroes-body' to="/">Home</Link>
       <h1 className='heroes-body'>Hero Generator</h1>
       <button className='heroes-body' onClick={handleGenerateClick} disabled={isSpinning}>Generate</button>
