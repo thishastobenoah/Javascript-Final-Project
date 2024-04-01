@@ -3,8 +3,9 @@ import { Legend } from '../../models/Legend';
 import { fetchLegends } from '../../services/legendsApi';
 import { saveLegendStats } from '../../services/userStatsApi';
 import Modal from '../../Modal';
-import '../../RouletteWheel.css';
+import '../Legends/Legends.css';
 import '../../Modal.css';
+import { Link } from "react-router-dom";
 
 const Legends = () => {
   const [legends, setLegends] = useState<Legend[]>([]);
@@ -53,7 +54,9 @@ const Legends = () => {
   };
 
   return (
-    <div className="compsoul-body">
+    <body className='legends-body'>
+    <div className="legends-container compsoul-body">
+    <Link className='legends-body' to="/">Home</Link>
       <h1>Legend Generator</h1>
       <button onClick={handleGenerateClick} disabled={isSpinning}>Generate</button>
       <div className={`compsoul-roulette ${isSpinning ? 'is-spinning' : ''}`}>
@@ -92,6 +95,7 @@ const Legends = () => {
         )}
       </Modal>
     </div>
+    </body>
   );
 };
 

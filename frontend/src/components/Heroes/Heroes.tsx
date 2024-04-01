@@ -5,7 +5,9 @@ import { fetchHeroes } from '../../services/heroesApi';
 import { saveHeroStats } from '../../services/userStatsApi';
 import Modal from '../../Modal';
 import '../../RouletteWheel.css';
+import '../Heroes/Heroes.css';
 import '../../Modal.css';
+import { Link } from "react-router-dom";
 
 const Heroes = () => {
   const [heroes, setHeroes] = useState<Hero[]>([]);
@@ -54,9 +56,11 @@ const Heroes = () => {
   };
 
   return (
-    <div className="compsoul-body">
-      <h1>Hero Generator</h1>
-      <button onClick={handleGenerateClick} disabled={isSpinning}>Generate</button>
+    <body className='heroes-body'>
+    <div className="heroes-container compsoul-body">
+      <Link className='heroes-body' to="/">Home</Link>
+      <h1 className='heroes-body'>Hero Generator</h1>
+      <button className='heroes-body' onClick={handleGenerateClick} disabled={isSpinning}>Generate</button>
       <div className={`compsoul-roulette ${isSpinning ? 'is-spinning' : ''}`}>
         <ul className="roulette-list">
           {heroes.map((hero, index) => (
@@ -94,7 +98,7 @@ const Heroes = () => {
         )}
       </Modal>
     </div>
+    </body>
   );
 };
-
 export default Heroes;
