@@ -4,7 +4,9 @@ import { fetchAgents } from '../../services/agentsApi';
 import { saveAgentStats } from '../../services/userStatsApi';
 import Modal from '../../Modal';
 import '../../RouletteWheel.css';
+import '../Agents/Agents.css'
 import '../../Modal.css';
+import { Link } from "react-router-dom";
 
 const Agents = () => {
   const [agents, setAgents] = useState<Agent[]>([]);
@@ -53,7 +55,9 @@ const Agents = () => {
   };
 
   return (
-    <div className="compsoul-body">
+    <body className='agents-body'>
+    <div className="agents-container compsoul-body">
+    <Link className='agents-body' to="/">Home</Link>
       <h1>Agent Generator</h1>
       <button onClick={handleGenerateClick} disabled={isSpinning}>Generate</button>
       <div className={`compsoul-roulette ${isSpinning ? 'is-spinning' : ''}`}>
@@ -92,6 +96,7 @@ const Agents = () => {
         )}
       </Modal>
     </div>
+    </body>
   );
 };
 
