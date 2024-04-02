@@ -8,6 +8,7 @@ import '../../RouletteWheel.css';
 import '../Heroes/Heroes.css';
 import '../../Modal.css';
 import { Link } from "react-router-dom";
+import { useUser } from '../../hooks/useUser';
 
 const Heroes = () => {
   const [heroes, setHeroes] = useState<Hero[]>([]);
@@ -16,7 +17,7 @@ const Heroes = () => {
   const [deaths, setDeaths] = useState('');
   const [isSpinning, setIsSpinning] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const userID = "1"; //TODO - replace with auth user id 
+  const { user } = useUser();
 
   useEffect(() => {
     fetchHeroes().then(setHeroes);
@@ -36,10 +37,10 @@ const Heroes = () => {
 
   const handleSaveStats = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (selectedHero && userID) {
+    if (selectedHero && user?.uid) {
       try {
         await saveHeroStats({
-          userId: userID,
+          userId: user.uid,
           characterName: selectedHero.name,
           kills: parseInt(kills, 10),
           deaths: parseInt(deaths, 10),

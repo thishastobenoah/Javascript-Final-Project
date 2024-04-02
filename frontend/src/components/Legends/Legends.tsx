@@ -6,6 +6,7 @@ import Modal from '../../Modal';
 import '../Legends/Legends.css';
 import '../../Modal.css';
 import { Link } from "react-router-dom";
+import { useUser } from '../../hooks/useUser';
 
 const Legends = () => {
   const [legends, setLegends] = useState<Legend[]>([]);
@@ -14,7 +15,7 @@ const Legends = () => {
   const [deaths, setDeaths] = useState('');
   const [isSpinning, setIsSpinning] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const userID = "1"; //TODO: Add user ID from auth
+  const { user } = useUser();
 
   useEffect(() => {
     fetchLegends().then(setLegends);
@@ -34,10 +35,10 @@ const Legends = () => {
 
   const handleSaveStats = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (selectedLegend && userID) {
+    if (selectedLegend && user?.uid) {
       try {
         await saveLegendStats({
-          userId: userID,
+          userId: user.uid,
           characterName: selectedLegend.name,
           kills: parseInt(kills, 10),
           deaths: parseInt(deaths, 10),

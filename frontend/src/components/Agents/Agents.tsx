@@ -7,6 +7,7 @@ import '../../RouletteWheel.css';
 import '../Agents/Agents.css'
 import '../../Modal.css';
 import { Link } from "react-router-dom";
+import { useUser } from '../../hooks/useUser';
 
 const Agents = () => {
   const [agents, setAgents] = useState<Agent[]>([]);
@@ -15,7 +16,7 @@ const Agents = () => {
   const [deaths, setDeaths] = useState('');
   const [isSpinning, setIsSpinning] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const userID = "1"; //TODO - add user id from auth
+  const { user } = useUser()
 
   useEffect(() => {
     fetchAgents().then(setAgents);
@@ -35,10 +36,10 @@ const Agents = () => {
 
   const handleSaveStats = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (selectedAgent && userID) {
+    if (selectedAgent && user?.uid) {
       try {
         await saveAgentStats({
-          userId: userID,
+          userId: user.uid,
           characterName: selectedAgent.displayName,
           kills: parseInt(kills, 10),
           deaths: parseInt(deaths, 10),
