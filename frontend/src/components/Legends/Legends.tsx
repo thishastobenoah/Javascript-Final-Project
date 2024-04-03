@@ -38,7 +38,7 @@ const Legends = () => {
     if (selectedLegend && user?.uid) {
       try {
         await saveLegendStats({
-          userId: user?.uid,
+          userId: user.uid,
           characterName: selectedLegend.name,
           kills: parseInt(kills, 10),
           deaths: parseInt(deaths, 10),
