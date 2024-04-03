@@ -1,17 +1,18 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { UserStatsResponse } from '../../models/UserStatsResponse';
 import { getUserStatsByUserId } from '../../services/userStatsApi';
+import './UserStats.css';
 
 interface UserStatsProps {
   userId: string;
 }
 
-const UserStats = ({ userId }: UserStatsProps) => {
+const UserStats: React.FC<UserStatsProps> = ({ userId }) => {
   const [userStats, setUserStats] = useState<UserStatsResponse[]>([]);
 
   useEffect(() => {
     getUserStatsByUserId(userId)
-      .then(data => setUserStats(data))
+      .then(setUserStats)
       .catch((error) => console.error('Failed to fetch stats:', error));
   }, [userId]);
 
@@ -20,16 +21,19 @@ const UserStats = ({ userId }: UserStatsProps) => {
   const averageKD = totalDeaths > 0 ? (totalKills / totalDeaths).toFixed(2) : 'N/A';
 
   return (
-    <div>
+    <div className="user-stats">
       <h2>User Stats</h2>
-      <p>Average K/D: {averageKD}</p>
-      <ul>
+      <div className="overall-kd">Overall Average K/D: {averageKD}</div>
+      <div className="stats-cards">
         {userStats.map((stat, index) => (
-          <li key={index}>
-            Character: {stat.characterName} - K/D: {stat.kills}/{stat.deaths} ({(stat.deaths > 0 ? (stat.kills / stat.deaths).toFixed(2) : 'N/A')})
-          </li>
+          <div key={index} className="stats-card">
+            <h3>{stat.characterName}</h3>
+            <p>Kills: {stat.kills}</p>
+            <p>Deaths: {stat.deaths}</p>
+            <p>K/D: {stat.deaths > 0 ? (stat.kills / stat.deaths).toFixed(2) : 'N/A'}</p>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
