@@ -62,13 +62,14 @@ const Agents = () => {
       <h1>Agent Generator</h1>
       <button onClick={handleGenerateClick} disabled={isSpinning}>Generate</button>
       <div className={`compsoul-roulette ${isSpinning ? 'is-spinning' : ''}`}>
-        <ul className="roulette-list">
-          {agents.map((agent, index) => (
-            <li key={index} className="roulette-item" style={{ transform: `rotate(${index * (360 / agents.length)}deg)` }}>
-              {agent.displayName}
-            </li>
-          ))}
-        </ul>
+      <ul className="roulette-list">
+        {agents.map((agent, index) => (
+          <li key={index} className="roulette-item" style={{ transform: `rotate(${index * (360 / agents.length)}deg)` }}>
+            {index === agents.length - 1 ? agent.displayName : ''}
+          </li>
+        ))}
+</ul>
+
       </div>
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
