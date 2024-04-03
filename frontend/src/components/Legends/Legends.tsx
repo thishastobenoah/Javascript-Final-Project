@@ -6,7 +6,7 @@ import Modal from '../../Modal';
 import '../Legends/Legends.css';
 import '../../Modal.css';
 import { Link } from "react-router-dom";
-import { useUser } from '../../hooks/useUser';
+import { useUser } from '../../hooks/useUser'
 
 const Legends = () => {
   const [legends, setLegends] = useState<Legend[]>([]);
