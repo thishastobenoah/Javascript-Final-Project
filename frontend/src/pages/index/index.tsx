@@ -23,7 +23,6 @@ export function Index() {
                 Logout
               </Link>
             </div>
-            <UserStats userId={user.uid} />
           </>
         ) : (
           <div className="btn-group">
