@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import UserStats from "../../components/UserStats/UserStats";
 import { useUser } from "../../hooks/useUser";
 import { useLogout } from "../../hooks/useLogout";
 import "./index.css";
